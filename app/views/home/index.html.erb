@@ -1,8 +1,71 @@
-<h1>Welcome to PetPals</h1>
-<ul>
-  <li><a href="<%= users_path %>">Users</a></li>
-  <li><a href="<%= pets_path %>">Pets</a></li>
-  <li><a href="<%= shelters_path %>">Shelters</a></li>
-  <li><a href="<%= applications_path %>">Applications</a></li>
-  <li><a href="<%= favorites_path %>">Favorites</a></li>
-</ul>
+<!-- app/views/home/index.html.erb -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PetPals</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_importmap_tags %>
+</head>
+<body>
+  <header>
+    <h1>Welcome to PetPals</h1>
+    <nav>
+      <ul>
+        <li><%= link_to 'Home', root_path %></li>
+        <li><%= link_to 'Pets', pets_path %></li>
+        <li><%= link_to 'Shelters', shelters_path %></li>
+        <li><%= link_to 'Users', users_path %></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="featured-pets">
+    <h2>Featured Pets</h2>
+    <ul>
+      <% @featured_pets.each do |pet| %>
+        <li>
+          <img src="<%= pet.photo_url %>" alt="<%= pet.name %>">
+          <h3><%= pet.name %></h3>
+          <p>Breed: <%= pet.breed %></p>
+          <p>Age: <%= pet.age %></p>
+          <p><%= link_to 'More Info', pet_path(pet) %></p>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+
+  <section id="shelters">
+    <h2>Our Shelters</h2>
+    <ul>
+      <% @shelters.each do |shelter| %>
+        <li>
+          <h3><%= shelter.name %></h3>
+          <p>Location: <%= shelter.location %></p>
+          <p>Contact Info: <%= shelter.contact_info %></p>
+          <p><%= link_to 'Visit Website', shelter.website_url, target: "_blank" %></p>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+
+  <section id="users">
+    <h2>Our Users</h2>
+    <ul>
+      <% @users.each do |user| %>
+        <li>
+          <img src="<%= user.profile_photo %>" alt="<%= user.username %>">
+          <h3><%= user.username %></h3>
+          <p>Email: <%= user.email %></p>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 PetPals. All rights reserved.</p>
+  </footer>
+</body>
+</html>
