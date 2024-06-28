@@ -1,0 +1,8 @@
+<h1>Applications</h1>
+<ul>
+  <% @applications.each do |application| %>
+    <li>
+      <%= link_to "Application ##{application.id}", application_path(application) %> - Status: <%= application.status %> - Submitted At: <%= application.submitted_at %>
+    </li>
+  <% end %>
+</ul>

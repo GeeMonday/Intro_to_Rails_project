@@ -1,0 +1,8 @@
+<h1>Shelters</h1>
+<ul>
+  <% @shelters.each do |shelter| %>
+    <li>
+      <%= link_to shelter.name, shelter_path(shelter) %> - <%= shelter.location %> - <%= shelter.contact_info %> - <%= shelter.website_url %>
+    </li>
+  <% end %>
+</ul>
