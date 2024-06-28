@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
-  get 'home/index'
-  resources :users
-  resources :pets
-  resources :shelters
-  resources :applications
-  resources :favorites
+  resources :users, only: [:index, :show]
+  resources :pets, only: [:index, :show]
+  resources :shelters, only: [:index, :show]
+  resources :applications, only: [:index, :show]
+  resources :favorites, only: [:index, :show]
 
   # Root path
   root "home#index"
