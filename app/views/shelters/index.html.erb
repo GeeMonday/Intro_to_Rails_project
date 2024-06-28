@@ -1,12 +1,11 @@
-<h1><%= @shelter.name %></h1>
-<p>Location: <%= @shelter.location %></p>
-<p>Contact Info: <%= @shelter.contact_info %></p>
-<p>Website: <%= link_to @shelter.website_url, @shelter.website_url, target: "_blank" %></p>
-
-<h2>Pets Available for Adoption</h2>
+<h1>Pet Shelters</h1>
 <ul>
-  <% @shelter.pets.each do |pet| %>
-    <li><%= link_to pet.name, pet_path(pet) %> - <%= pet.breed %> - <%= pet.age %></li>
+  <% @shelters.each do |shelter| %>
+    <li>
+      <h2><%= link_to shelter.name, shelter_path(shelter) %></h2>
+      <p>Location: <%= shelter.location %></p>
+      <p>Contact Info: <%= shelter.contact_info %></p>
+      <p>Website: <%= link_to shelter.website_url, shelter.website_url, target: "_blank" %></p>
+    </li>
   <% end %>
 </ul>
-
