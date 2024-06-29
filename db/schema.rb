@@ -31,17 +31,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_172633) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
-  create_table "pets", force: :cascade do |t|
+  create_table "dogs", force: :cascade do |t|
     t.string "name"
     t.string "breed"
     t.integer "age"
     t.text "description"
     t.string "photo_url"
-    t.integer "shelter_id", null: false
+    t.bigint "shelter_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["shelter_id"], name: "index_pets_on_shelter_id"
+    t.index ["shelter_id"], name: "index_dogs_on_shelter_id"
   end
+  
 
   create_table "shelters", force: :cascade do |t|
     t.string "name"
