@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_28_172633) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_29_062929) do
   create_table "applications", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "pet_id", null: false
@@ -20,6 +20,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_172633) do
     t.datetime "updated_at", null: false
     t.index ["pet_id"], name: "index_applications_on_pet_id"
     t.index ["user_id"], name: "index_applications_on_user_id"
+  end
+
+  create_table "dogs", force: :cascade do |t|
+    t.string "name"
+    t.string "breed"
+    t.integer "age"
+    t.text "description"
+    t.string "photo_url"
+    t.integer "shelter_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shelter_id"], name: "index_dogs_on_shelter_id"
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -37,12 +49,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_172633) do
     t.integer "age"
     t.text "description"
     t.string "photo_url"
-    t.bigint "shelter_id"
+    t.integer "shelter_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["shelter_id"], name: "index_dogs_on_shelter_id"
   end
-  
 
   create_table "shelters", force: :cascade do |t|
     t.string "name"
@@ -62,9 +73,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_172633) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "applications", "pets"
+  add_foreign_key "applications", "dogs"
   add_foreign_key "applications", "users"
-  add_foreign_key "favorites", "pets"
+  add_foreign_key "dogs", "shelters"
+  add_foreign_key "favorites", "dogs"
   add_foreign_key "favorites", "users"
-  add_foreign_key "pets", "shelters"
+  add_foreign_key "dogs", "shelters"
 end
