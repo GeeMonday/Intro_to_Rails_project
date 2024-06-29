@@ -1,8 +1,8 @@
 # lib/tasks/populate_dogs.rake
 namespace :populate do
-    desc "Populate the database with dogs from DogAPI"
+    desc "Populate the database with dogs from DogApiService"
     task dogs: :environment do
-      dogs = DogAPIService.fetch_random_dogs(50)
+      dogs = DogApiService.fetch_random_dogs(50)
   
       dogs.each do |dog_data|
         Dog.create(
