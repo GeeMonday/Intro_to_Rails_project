@@ -1,4 +1,4 @@
-<!-- app/views/home/index.html.erb -->
+<!-- app/views/dogs/index.html.erb -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +11,7 @@
 </head>
 <body>
   <header>
-    <h1>Welcome to PetPals</h1>
+    <h1>Dogs Available for Adoption</h1>
     <nav>
       <ul>
         <li><%= link_to 'Home', root_path %></li>
@@ -22,8 +22,8 @@
     </nav>
   </header>
 
-  <section id="featured-dogs">
-    <h2>Featured Dogs</h2>
+  <section id="dogs">
+    <h2>Our Dogs</h2>
     <ul>
       <% @dogs.each do |dog| %>
         <li>
@@ -31,34 +31,8 @@
           <h3><%= dog.name %></h3>
           <p>Breed: <%= dog.breed %></p>
           <p>Age: <%= dog.age %> years old</p>
+          <p>Description: <%= dog.description %></p>
           <p><%= link_to 'More Info', dog_path(dog) %></p>
-        </li>
-      <% end %>
-    </ul>
-  </section>
-
-  <section id="shelters">
-    <h2>Our Shelters</h2>
-    <ul>
-      <% @shelters.each do |shelter| %>
-        <li>
-          <h3><%= shelter.name %></h3>
-          <p>Location: <%= shelter.location %></p>
-          <p>Contact Info: <%= shelter.contact_info %></p>
-          <p><%= link_to 'Visit Website', shelter.website_url, target: "_blank" %></p>
-        </li>
-      <% end %>
-    </ul>
-  </section>
-
-  <section id="users">
-    <h2>Our Users</h2>
-    <ul>
-      <% @users.each do |user| %>
-        <li>
-          <img src="<%= user.profile_photo %>" alt="<%= user.username %>">
-          <h3><%= user.username %></h3>
-          <p>Email: <%= user.email %></p>
         </li>
       <% end %>
     </ul>
@@ -69,6 +43,3 @@
   </footer>
 </body>
 </html>
-
-
-
