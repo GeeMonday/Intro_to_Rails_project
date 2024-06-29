@@ -1,4 +1,4 @@
-class Pet < ApplicationRecord
+class Dog < ApplicationRecord
   belongs_to :shelter
   has_many :applications
   has_many :favorites
