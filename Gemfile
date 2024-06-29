@@ -47,6 +47,10 @@ gem "bootsnap", require: false
 # HTTP client gem
 gem "httparty"
 
+# Devise gem
+gem "devise"
+
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]

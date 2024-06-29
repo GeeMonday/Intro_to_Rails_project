@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
+
   resources :users, only: [:index, :show]
   resources :dogs, only: [:index, :show]
   resources :shelters, only: [:index, :show]

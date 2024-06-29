@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_29_062929) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_29_230922) do
   create_table "applications", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "pet_id", null: false
@@ -43,7 +43,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_29_062929) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
-  create_table "dogs", force: :cascade do |t|
+  create_table "pets", force: :cascade do |t|
     t.string "name"
     t.string "breed"
     t.integer "age"
@@ -52,7 +52,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_29_062929) do
     t.integer "shelter_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["shelter_id"], name: "index_dogs_on_shelter_id"
+    t.index ["shelter_id"], name: "index_pets_on_shelter_id"
   end
 
   create_table "shelters", force: :cascade do |t|
@@ -71,12 +71,23 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_29_062929) do
     t.string "profile_photo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "applications", "dogs"
+  add_foreign_key "applications", "pets"
   add_foreign_key "applications", "users"
   add_foreign_key "dogs", "shelters"
-  add_foreign_key "favorites", "dogs"
+  add_foreign_key "favorites", "pets"
   add_foreign_key "favorites", "users"
-  add_foreign_key "dogs", "shelters"
+  add_foreign_key "pets", "shelters"
 end
