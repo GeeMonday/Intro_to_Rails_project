@@ -54,14 +54,15 @@
   <section id="users">
     <h2>Our Users</h2>
     <ul>
-      <% @users.each do |user| %>
-        <li>
-          <img src="<%= user.profile_photo %>" alt="<%= user.username %>">
-          <h3><%= user.username %></h3>
-          <p>Email: <%= user.email %></p>
-        </li>
-      <% end %>
-    </ul>
+    <% @users.each do |user| %>
+      <li>
+        <img src="<%= user.profile_photo %>" alt="<%= user.email %>">
+        <h3><%= user.new_username %></h3>
+        <p>Email: <%= user.email %></p>
+      </li>
+    <% end %>
+  </ul>
+  
   </section>
 
   <footer>

@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+  get 'profiles/show'
+  get 'profiles/edit'
+  get 'profiles/update'
   devise_for :users, controllers: {
-  registrations: 'users/registrations'
-}
+    registrations: 'users/registrations'
+  }
 
   resources :users, only: [:index, :show]
   resources :dogs, only: [:index, :show]
@@ -12,3 +15,4 @@ Rails.application.routes.draw do
   # Root path
   root "home#index"
 end
+
