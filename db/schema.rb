@@ -43,7 +43,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_29_231352) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
-  create_table "dog", force: :cascade do |t|
+  create_table "pets", force: :cascade do |t|
     t.string "name"
     t.string "breed"
     t.integer "age"
@@ -52,7 +52,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_29_231352) do
     t.integer "shelter_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["shelter_id"], name: "index_dog_on_shelter_id"
+    t.index ["shelter_id"], name: "index_pets_on_shelter_id"
   end
 
   create_table "shelters", force: :cascade do |t|
@@ -85,10 +85,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_29_231352) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "applications", "dog"
+  add_foreign_key "applications", "pets"
   add_foreign_key "applications", "users"
   add_foreign_key "dogs", "shelters"
-  add_foreign_key "favorites", "dog"
+  add_foreign_key "favorites", "pets"
   add_foreign_key "favorites", "users"
-  add_foreign_key "dog", "shelters"
+  add_foreign_key "pets", "shelters"
 end
