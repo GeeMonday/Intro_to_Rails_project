@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :show] # Ensure user is authenticated before showing profile
     def index
       @users = User.all
     end

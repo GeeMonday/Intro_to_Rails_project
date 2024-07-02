@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>PetPals</title>
+  <title>DogPals</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
@@ -12,24 +12,29 @@
 </head>
 <body>
   <header>
-    <h1>PetPals</h1>
+    <h1>DogPals</h1>
     <nav>
       <ul>
         <li><%= link_to 'Home', root_path %></li>
         <li><%= link_to 'Dogs', dogs_path %></li>
         <li><%= link_to 'Shelters', shelters_path %></li>
         <li><%= link_to 'Users', users_path %></li>
+        <% if user_signed_in? %>
+        <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: "nav-link" %></li>
+        <% else %>
+          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+          <li><%= link_to 'Log In', new_user_session_path %></li>
+        <% end %>
       </ul>
     </nav>
   </header>
-
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
 
   <%= yield %>
 
   <footer>
-    <p>&copy; 2024 PetPals. All rights reserved.</p>
+    <p>&copy; 2024 DogPals. All rights reserved.</p>
   </footer>
 </body>
 </html>
