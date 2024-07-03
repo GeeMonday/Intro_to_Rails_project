@@ -2,7 +2,7 @@
 <ul>
   <% @favorites.each do |favorite| %>
     <li>
-      <%= link_to favorite.pet.name, pet_path(favorite.pet) %> - <%= favorite.pet.breed %>
+      <%= link_to favorite.dog.name, dog_path(favorite.dog) %> - <%= favorite.dog.breed %>
     </li>
   <% end %>
 </ul>

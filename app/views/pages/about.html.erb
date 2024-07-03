@@ -1,12 +1,98 @@
-<h1>About DogPals</h1>
-<p>This project uses data from various sources to provide information about dogs and shelters. The main data sources include:</p>
-<ul>
-  <li>Data Source 1: Description of the data source.</li>
-  <li>Data Source 2: Description of the data source.</li>
-  <!-- Add more data sources as needed -->
-</ul>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DogPals - About</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-<%# Optional: Display your ERD here %>
-<h2>Entity-Relationship Diagram (ERD)</h2>
-<p>You can include an image of your ERD here if you have one:</p>
-<%= image_tag 'path_to_your_erd_image.png', alt: 'ERD' %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+  <%= javascript_importmap_tags %>
+</head>
+<body>
+  <h1>About</h1>
+
+  <p>The vision for DogPals is to create a welcoming, efficient, and impactful platform that connects dogs with potential adopters. The website aims to be a trusted resource for dog adoption, providing detailed information, easy navigation, and a supportive community for both adopters and shelters.</p>
+
+  <section>
+    <h2>1.1 - Describe Datasets</h2>
+    <h3>Selected Data Sources:</h3>
+    
+    <h4>Dog Listings Database:</h4>
+    <p>
+      <strong>Description:</strong> This dataset contains information about dogs available for adoption, including their names, breeds, ages, descriptions, and photos.
+    </p>
+    <p>
+      <strong>Structure:</strong> Each dog has attributes such as id, name, breed, age, description, photo_url, shelter_id.
+    </p>
+    <p>
+      <strong>Tables and Columns:</strong>
+      <ul>
+        <li>dogs: id, name, breed, age, description, photo_url, shelter_id</li>
+      </ul>
+    </p>
+    <p><strong>Data Source:</strong> The dog data was sourced using the DogAPI and generated using the Faker gem.</p>
+
+
+    <h4>User Profiles Database:</h4>
+    <p>
+      <strong>Description:</strong> This dataset includes user information, profiles, and saved favorite dogs.
+    </p>
+    <p>
+      <strong>Structure:</strong> Each user has attributes such as id, username, email, password_digest, profile_photo, favorite_dog_ids.
+    </p>
+    <p>
+      <strong>Tables and Columns:</strong>
+      <ul>
+        <li>users: id, username, email, password_digest, profile_photo</li>
+        <li>favorites: user_id, dog_id</li>
+      </ul>
+    </p>
+    <p><strong>Data Source:</strong> Custom made faker gem data for user profiles.</p>
+
+    <h4>Shelter/Rescue Database:</h4>
+    <p>
+      <strong>Description:</strong> This dataset contains information about animal shelters and rescues, including their profiles and listed dogs.
+    </p>
+    <p>
+      <strong>Structure:</strong> Each shelter has attributes such as id, name, location, contact_info, website_url.
+    </p>
+    <p>
+      <strong>Tables and Columns:</strong>
+      <ul>
+        <li>shelters: id, name, location, contact_info, website_url</li>
+      </ul>
+    </p>
+    <p><strong>Data Source:</strong> Custom made faker gem data for shelters.</p>
+
+    <h4>Adoption Application Database:</h4>
+    <p>
+      <strong>Description:</strong> This dataset includes adoption applications submitted by users for specific dogs.
+    </p>
+    <p>
+      <strong>Structure:</strong> Each application has attributes such as id, user_id, dog_id, status, submitted_at.
+    </p>
+    <p>
+      <strong>Tables and Columns:</strong>
+      <ul>
+        <li>applications: id, user_id, dog_id, status, submitted_at</li>
+      </ul>
+    </p>
+
+    <h3>Integration:</h3>
+    <p>
+      <ul>
+        <li>The <strong>shelter_id</strong> in the dogs table links each dog to a shelter.</li>
+        <li>The <strong>user_id</strong> in the applications table links each application to a user.</li>
+        <li>The <strong>dog_id</strong> in the applications table links each application to a specific dog.</li>
+        <li>The <strong>favorite_dog_ids</strong> in the users table links users to their favorite dogs through the favorites table.</li>
+      </ul>
+    </p>
+  </section>
+
+  <section>
+    <h2>Entity-Relationship Diagram (ERD)</h2>
+    <%= image_tag 'erd_image.png', alt: 'ERD' %>
+  </section>
+</body>
+</html>
+

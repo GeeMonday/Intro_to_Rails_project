@@ -11,7 +11,7 @@
 </head>
 <body>
   <section id="dog-details">
-    <h2><%= @dog.name %></h2>
+    <h1><%= @dog.name %></h1>
     <img src="<%= @dog.photo_url %>" alt="<%= @dog.name %>">
     <p><strong>Breed:</strong> <%= @dog.breed %></p>
     <p><strong>Age:</strong> <%= @dog.age %> years old</p>
@@ -20,12 +20,13 @@
 
     <% if user_signed_in? %>
       <% if current_user.favorite_dogs.include?(@dog) %>
-        <%= button_to 'Remove from Favorites', dog_favorite_path(@dog), method: :delete %>
+        <%= button_to 'Remove from Favorites', dog_favorite_path(@dog, current_user.favorites.find_by(dog_id: @dog.id)), method: :delete %>
       <% else %>
-        <%= button_to 'Add to Favorites', dog_favorites_path(@dog) %>
+        <%= button_to 'Add to Favorites', dog_favorite_path(@dog), method: :post %>
       <% end %>
     <% end %>
   </section>
 </body>
 </html>
+
 
