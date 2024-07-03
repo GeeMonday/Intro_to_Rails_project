@@ -1,2 +1,17 @@
-<h1>Profiles#show</h1>
-<p>Find me in app/views/profiles/show.html.erb</p>
+<!-- app/views/profiles/show.html.erb -->
+<h1>User Profile</h1>
+
+<div>
+  <strong>Username:</strong> <%= @user.new_username %>
+</div>
+
+<div>
+  <strong>Bio:</strong>
+  <p><%= @user.bio %></p>
+</div>
+
+<div>
+  <strong>Email:</strong> <%= @user.email %>
+</div>
+
+<!-- Add more fields as per your User model -->

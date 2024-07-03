@@ -14,7 +14,7 @@ class User < ApplicationRecord
   # Associations
   has_many :applications
   has_many :favorites
-  has_many :favorite_pets, through: :favorites, source: :pet
+  has_many :favorite_dogs, through: :favorites, source: :dog
 
   private
 

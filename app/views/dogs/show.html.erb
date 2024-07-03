@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>PetPals - <%= @dog.name %></title>
+  <title>DogPals - <%= @dog.name %></title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
@@ -17,6 +17,15 @@
     <p><strong>Age:</strong> <%= @dog.age %> years old</p>
     <p><strong>Description:</strong> <%= @dog.description %></p>
     <p><strong>Shelter:</strong> <%= @dog.shelter.name %></p>
+
+    <% if user_signed_in? %>
+      <% if current_user.favorite_dogs.include?(@dog) %>
+        <%= button_to 'Remove from Favorites', dog_favorite_path(@dog), method: :delete %>
+      <% else %>
+        <%= button_to 'Add to Favorites', dog_favorites_path(@dog) %>
+      <% end %>
+    <% end %>
   </section>
 </body>
 </html>
+

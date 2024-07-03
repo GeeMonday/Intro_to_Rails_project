@@ -1,16 +1,12 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:show]
+  before_action :authenticate_user!, only: [:show, :profile]
 
   def index
     @users = User.all
   end
 
   def show
-    if params[:id] == "sign_out"
-      redirect_to root_path, alert: "Invalid user ID"
-    else
       @user = User.find(params[:id])
-    end
   end
 
   # Additional method to show the current user's profile
