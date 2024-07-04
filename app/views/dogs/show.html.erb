@@ -1,4 +1,3 @@
-<!-- app/views/dogs/show.html.erb -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +15,8 @@
     <p><strong>Breed:</strong> <%= @dog.breed %></p>
     <p><strong>Age:</strong> <%= @dog.age %> years old</p>
     <p><strong>Description:</strong> <%= @dog.description %></p>
-    <p><strong>Shelter:</strong> <%= @dog.shelter.name %></p>
+    <p><strong>Shelter:</strong> <%= link_to @dog.shelter.name, shelter_path(@dog.shelter) %></p>
+    <p><strong>Contact Info:</strong> <%= @dog.shelter.contact_info %></p>
 
     <% if user_signed_in? %>
       <% if current_user.favorite_dogs.include?(@dog) %>

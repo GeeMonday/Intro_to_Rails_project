@@ -3,9 +3,12 @@ module Faker
     class CustomData
       class << self
         def pet_name
-          %w[Bella Luna Max Lucy Charlie Daisy].sample
+          %w[
+            Bella Luna Max Lucy Charlie Daisy Cooper Rocky Bailey Sophie Molly
+            Bear Duke Rosie Ruby Buster Harley Leo Milo Jack
+          ].sample
         end
-  
+        
         def pet_breed
           %w[Beagle Poodle Labrador Husky Bulldog Shepherd].sample
         end
@@ -55,7 +58,7 @@ module Faker
         end
   
         def application_submitted_at
-          Faker::Date.between(from: 1.year.ago, to: Date.today)
+          Faker::Date.between(from: 4.year.ago, to: Date.today)
         end
       end
     end

@@ -1,11 +1,25 @@
 <!-- app/views/users/show.html.erb -->
 <% if @user == current_user %>
   <h2>My Profile</h2>
-  <p><strong>Username:</strong> <%= @user.new_username %></p>
-  <p><strong>Bio:</strong> <%= @user.bio %></p>
-  <!-- Add other user profile details as needed -->
 <% else %>
   <h2>User Profile</h2>
-  <p><strong>Username:</strong> <%= @user.new_username %></p>
-  <!-- Display other details for the user profile -->
+<% end %>
+
+<p><strong>Username:</strong> <%= @user.new_username %></p>
+<p><strong>Bio:</strong> <%= @user.bio %></p>
+
+<% if @user == current_user %>
+  <!-- Display additional details for the current user, e.g., favorite dogs -->
+  <h2>Dogs Favorited by <%= @user.new_username %></h2>
+  <ul>
+    <% @user.favorite_dogs.each do |dog| %>
+      <li>
+        <%= link_to image_tag(dog.photo_url, alt: dog.name), dog_path(dog) %>
+        <h3><%= link_to dog.name, dog_path(dog) %></h3>
+      </li>
+    <% end %>
+    <% if @user.favorite_dogs.empty? %>
+      <p>No Favorite Dogs for this user.</p>
+    <% end %>
+  </ul>
 <% end %>

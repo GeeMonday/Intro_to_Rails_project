@@ -8,21 +8,24 @@ Rails.application.routes.draw do
   }
 
   # User profile and related routes
-  resources :users, only: [:index, :show]
-  get 'profile', to: 'users#profile', as: 'profile'
-  get 'profiles/show'
-  get 'profiles/edit'
-  get 'profiles/update'
+  resources :users, only: [:index, :show] do
+    collection do
+      get 'profile', to: 'users#profile', as: 'profile'
+    end
+  end
 
   # Resources for dogs, shelters, applications, and favorites
   resources :dogs, only: [:index, :show] do
     resource :favorite, only: [:create, :destroy]
   end
-  
+
   resources :shelters, only: [:index, :show]
   resources :applications, only: [:index, :show]
-  
+
   # Root path
   root "home#index"
 end
+
+
+
 

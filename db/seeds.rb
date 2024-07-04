@@ -13,14 +13,14 @@ require_relative '../lib/faker/custom_data'
   )
 end
 
-# Create pets
+# Create dogs
 50.times do
-  Pet.create!(
-    name: Faker::CustomData.pet_name,
-    breed: Faker::CustomData.pet_breed,
+  dog.create!(
+    name: Faker::CustomData.dog_name,
+    breed: Faker::CustomData.dog_breed,
     age: rand(1..10),
-    description: Faker::CustomData.pet_description,
-    photo_url: Faker::CustomData.pet_photo_url,
+    description: Faker::CustomData.dog_description,
+    photo_url: Faker::CustomData.dog_photo_url,
     shelter: Shelter.all.sample
   )
 end
@@ -39,7 +39,7 @@ end
 100.times do
   Favorite.create!(
     user: User.all.sample,
-    pet: Pet.all.sample
+    dog: dog.all.sample
   )
 end
 
@@ -47,7 +47,7 @@ end
 30.times do
   Application.create!(
     user: User.all.sample,
-    pet: Pet.all.sample,
+    dog: dog.all.sample,
     status: Faker::CustomData.application_status,
     submitted_at: Faker::CustomData.application_submitted_at
   )
