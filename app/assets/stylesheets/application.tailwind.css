@@ -2,12 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
-
-@layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
-  }
+.header-container {
+  @apply flex justify-between items-center;
 }
 
-*/
+.nav-container {
+  @apply flex space-x-4;
+}
+
+.search-form {
+  @apply flex items-center;
+}

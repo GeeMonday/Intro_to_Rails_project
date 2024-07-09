@@ -1,12 +1,18 @@
 # app/controllers/dogs_controller.rb
 class DogsController < ApplicationController
   def index
+    @dogs = Dog.all
+
     if params[:search].present?
-      @dogs = Dog.where("name LIKE ? OR breed LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%").page(params[:page]).per(10)
-    else
-      @dogs = Dog.page(params[:page]).per(10)
+      @dogs = @dogs.where("name LIKE ? OR breed LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
     end
-    @shelters = Shelter.all  # Optionally, if needed for hierarchical search
+
+    if params[:shelter_id].present?
+      @dogs = @dogs.where(shelter_id: params[:shelter_id])
+    end
+
+    @dogs = @dogs.page(params[:page]).per(10)
+    @shelters = Shelter.all
   end
 
   def show

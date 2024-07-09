@@ -1,45 +1,65 @@
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= devise_error_messages! %>
-  
-    <div class="field">
-    <%= f.label :new_username %>
-    <%= f.text_field :new_username %>
-  </div>
-  
-  
-    <div class="field">
-      <%= f.label :bio %>
-      <%= f.text_area :bio %>
-    </div>
-  
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true %>
-    </div>
-  
-    <div class="field">
-      <%= f.label :password %>
-      <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br />
-      <%= f.password_field :password, autocomplete: "off" %>
-    </div>
-  
-    <div class="field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "off" %>
-    </div>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <div class="field">
-    <%= f.label :profile_photo %>
-    <%= f.file_field :profile_photo %>
-  </div>
-  
-    <div class="actions">
-      <%= f.submit "Sign up" %>
+  <%= stylesheet_link_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css' %>
+  <%= javascript_include_tag 'https://code.jquery.com/jquery-3.5.1.slim.min.js' %>
+  <%= javascript_include_tag 'https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js' %>
+  <%= javascript_include_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js' %>
+  <%= javascript_importmap_tags %>
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'needs-validation', novalidate: true }) do |f| %>
+          <%= devise_error_messages! %>
+          <h2 class="mb-4">Register as a New User</h2>
+
+          <div class="form-group">
+            <%= f.label :new_username %>
+            <%= f.text_field :new_username, class: 'form-control', required: true %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :bio %>
+            <%= f.text_area :bio, class: 'form-control', rows: 3, required: true %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :email %>
+            <%= f.email_field :email, class: 'form-control', autofocus: true, required: true %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :password %>
+            <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %>
+            <%= f.password_field :password, class: 'form-control', autocomplete: "off", required: true %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :password_confirmation %>
+            <%= f.password_field :password_confirmation, class: 'form-control', autocomplete: "off", required: true %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :profile_photo %>
+            <%= f.file_field :profile_photo, class: 'form-control-file', required: true %>
+          </div>
+
+          <div class="form-group">
+            <%= f.submit "Sign up", class: 'btn btn-primary' %>
+          </div>
+        <% end %>
+
+        <%= render "devise/shared/links" %>
+      </div>
     </div>
-  <% end %>
-  
-  <%= render "devise/shared/links" %>
-  
-  
+  </div>
+</body>
+</html>

@@ -1,44 +1,29 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>PetPals</title>
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
-
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
-  <%= javascript_importmap_tags %>
-</head>
-<body>
-  <h1>Dogs Available for Adoption</h1>
-
-  <%= form_with(url: dogs_path, method: "get") do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Search dogs..." %>
-    <%= submit_tag "Search", class: "btn btn-primary" %>
+<!-- app/views/home/index.html.erb -->
+<div class="container">
+  <% if @dogs.empty? %>
+    <div class="alert alert-info">
+      <p>No dogs available for adoption at the moment. Please check back later!</p>
+    </div>
+  <% else %>
+    <section id="dogs">
+      <h2 class="my-4">Our Dogs</h2>
+      <div class="row">
+        <% @dogs.each do |dog| %>
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <img src="<%= dog.photo_url %>" alt="<%= dog.name %>" class="card-img-top">
+              <div class="card-body">
+                <h5 class="card-title"><%= dog.name %></h5>
+                <p class="card-text">Breed: <%= dog.breed %></p>
+                <p class="card-text">Age: <%= dog.age %> years old</p>
+                <p class="card-text">Description: <%= dog.description %></p>
+                <%= link_to 'More Info', dog_path(dog), class: 'btn btn-primary' %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <%= paginate @dogs, class: 'pagination justify-content-center my-4' %>
+    </section>
   <% end %>
-
-  <section id="dogs">
-    <h2>Filter by Shelter</h2>
-    <%= form_tag(dogs_path, method: "get") do %>
-      <%= select_tag :shelter_id, options_from_collection_for_select(@shelters, :id, :name, params[:shelter_id]), include_blank: true %>
-      <%= submit_tag "Filter", class: "btn btn-primary" %>
-    <% end %>
-
-    <h2>Dogs List</h2>
-    <ul>
-      <% @dogs.each do |dog| %>
-        <li>
-          <img src="<%= dog.photo_url %>" alt="<%= dog.name %>">
-          <h3><%= dog.name %></h3>
-          <p>Breed: <%= dog.breed %></p>
-          <p>Age: <%= dog.age %> years old</p>
-          <p>Description: <%= dog.description %></p>
-          <p><%= link_to 'More Info', dog_path(dog) %></p>
-        </li>
-      <% end %>
-    </ul>
-
-    <%= paginate @dogs %>
-  </section>
-
-</body>
-</html>
+</div>

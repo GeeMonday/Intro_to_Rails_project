@@ -5,56 +5,73 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+  <%= stylesheet_link_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css' %>
+  <%= javascript_include_tag 'https://code.jquery.com/jquery-3.5.1.slim.min.js' %>
+  <%= javascript_include_tag 'https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js' %>
+  <%= javascript_include_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js' %>
   <%= javascript_importmap_tags %>
-  
 </head>
 <body>
-  <div>
- <h1>Find your new best friend <h1>
- <h2>Browse pets from our network of over 14,500 shelters and rescues.</h2>
- </div>
-  <section id="featured-dogs">
-    <h2>Featured Dogs</h2>
-    <ul>
+  <div class="container text-center my-4">
+    <h1 class="text-3xl font-bold mb-4">Find your new best friend</h1>
+    <h2 class="text-xl mb-4">Browse pets from our network of over 500 shelters and rescues.</h2>
+  </div>
+
+  <section id="featured-dogs" class="container my-4">
+    <h2 class="text-center text-2xl font-bold mb-4">Featured Dogs</h2>
+    <div class="row">
       <% @dogs.each do |dog| %>
-        <li>
-          <img src="<%= dog.photo_url %>" alt="<%= dog.name %>">
-          <h3><%= dog.name %></h3>
-          <p>Breed: <%= dog.breed %></p>
-          <p>Age: <%= dog.age %> years old</p>
-          <p><%= link_to 'More Info', dog_path(dog) %></p>
-        </li>
+        <div class="col-md-4">
+          <div class="card">
+            <img src="<%= dog.photo_url %>" alt="<%= dog.name %>" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title"><%= dog.name %></h5>
+              <p class="card-text">Breed: <%= dog.breed %></p>
+              <p class="card-text">Age: <%= dog.age %> years old</p>
+              <p class="card-text">Description: <%= dog.description %></p>
+              <%= link_to 'More Info', dog_path(dog), class: 'btn btn-primary' %>
+            </div>
+          </div>
+        </div>
       <% end %>
-    </ul>
+    </div>
   </section>
 
-  <section id="shelters">
-    <h2>Our Shelters</h2>
-    <ul>
+  <section id="shelters" class="container my-4">
+    <h2 class="text-center text-2xl font-bold mb-4">Our Shelters</h2>
+    <div class="row">
       <% @shelters.each do |shelter| %>
-        <li>
-          <h3><%= shelter.name %></h3>
-          <p>Location: <%= shelter.location %></p>
-          <p>Contact Info: <%= shelter.contact_info %></p>
-          <p><%= link_to 'Visit Website', shelter.website_url, target: "_blank" %></p>
-        </li>
+        <div class="col-md-4">
+          <div class="card">
+            <!-- Remove this line if photo_url is not needed -->
+            <div class="card-body">
+              <h5 class="card-title"><%= shelter.name %></h5>
+              <p class="card-text">Location: <%= shelter.location %></p>
+              <p class="card-text">Contact Info: <%= shelter.contact_info %></p>
+              <%= link_to 'Visit Website', shelter.website_url, target: "_blank", class: "btn btn-primary" %>
+            </div>
+          </div>
+        </div>
       <% end %>
-    </ul>
+    </div>
   </section>
 
-  <section id="users">
-    <h2>Our Users</h2>
-    <ul>
-    <% @users.each do |user| %>
-      <li>
-        <img src="<%= user.profile_photo %>" alt="<%= user.email %>">
-        <h3><%= user.new_username %></h3>
-        <p>Email: <%= user.email %></p>
-        <p><%= link_to 'View Profile', user_path(user) %></p>
-      </li>
-    <% end %>
-    </ul>
+  <section id="users" class="container my-4">
+    <h2 class="text-center text-2xl font-bold mb-4">Our Users</h2>
+    <div class="row">
+      <% @users.each do |user| %>
+        <div class="col-md-4">
+          <div class="card">
+            <img src="<%= user.profile_photo %>" alt="<%= user.email %>" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title"><%= user.new_username %></h5>
+              <p class="card-text">Email: <%= user.email %></p>
+              <%= link_to 'View Profile', user_path(user), class: "btn btn-primary" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </section>
 </body>
 </html>

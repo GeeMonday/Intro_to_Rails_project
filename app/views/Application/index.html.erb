@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Adoption Applications</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css' %>
+  <%= javascript_include_tag 'https://code.jquery.com/jquery-3.5.1.slim.min.js' %>
+  <%= javascript_include_tag 'https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js' %>
+  <%= javascript_include_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js' %>
+  <%= javascript_importmap_tags %>
+</head>
+<body>
+  <div class="container mt-5">
+    <h2 class="mb-4">Adoption Applications</h2>
+    <div class="row">
+      <% @applications.each do |application| %>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Application by <%= application.user.new_username %></h5>
+              <p class="card-text">Dog: <%= application.dog.name %></p>
+              <p class="card-text">Status: <%= application.status %></p>
+              <p class="card-text">Submitted At: <%= application.submitted_at %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</body>
+</html>
