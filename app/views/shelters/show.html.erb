@@ -6,14 +6,9 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
   <%= javascript_importmap_tags %>
 </head>
 <body>
-  <header>
-    <h1><%= @shelter.name %></h1>
-  </header>
-
   <section id="shelter-details">
     <h2><%= @shelter.name %></h2>
     <p><strong>Location:</strong> <%= @shelter.location %></p>

@@ -15,9 +15,9 @@ end
 
 # Create dogs
 50.times do
-  dog.create!(
-    name: Faker::CustomData.dog_name,
-    breed: Faker::CustomData.dog_breed,
+  Dog.create!(
+    name: Faker::CustomData.name,
+    breed: Faker::CustomData.breed,
     age: rand(1..10),
     description: Faker::CustomData.dog_description,
     photo_url: Faker::CustomData.dog_photo_url,
@@ -46,9 +46,9 @@ end
 # Create adoption applications
 30.times do
   Application.create!(
-    user: User.all.sample,
-    dog: dog.all.sample,
-    status: Faker::CustomData.application_status,
-    submitted_at: Faker::CustomData.application_submitted_at
+    status: ['Pending', 'Approved', 'Rejected'].sample,
+    submitted_at: Faker::Date.between(from: 2.years.ago, to: Date.today),
+    user: User.order("RANDOM()").first, # Associate with a random user
+    dog: Dog.order("RANDOM()").first # Associate with a random dog
   )
 end

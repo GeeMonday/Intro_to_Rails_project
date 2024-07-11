@@ -5,7 +5,7 @@ namespace :populate do
     dogs = DogApiService.fetch_random_dogs(50)
 
     dogs.each do |dog_data|
-      name = Faker::CustomData.pet_name
+      name = Faker::CustomData.dog_name
       description = "Meet #{name}! #{Faker::CustomData.pet_description} They are #{rand(1..10)} years old and looking for a forever home."
 
       Dog.create(

@@ -1,6 +1,6 @@
 class ApplicationsController < ApplicationController
   def index
-    @applications = Application.includes(:user, :dog).all
+    @applications = ApplicationRecord.includes(:user, :dog).all
   end
 
   def show

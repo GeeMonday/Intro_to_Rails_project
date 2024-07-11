@@ -1,10 +1,10 @@
-class CreateApplications < ActiveRecord::Migration[7.1]
+class CreateApplications < ActiveRecord::Migration[6.0]
   def change
     create_table :applications do |t|
       t.references :user, null: false, foreign_key: true
-      t.references :pet, null: false, foreign_key: true
-      t.string :status
-      t.datetime :submitted_at
+      t.references :dog, null: false, foreign_key: true
+      t.string :status, null: false
+      t.datetime :submitted_at, null: false
 
       t.timestamps
     end

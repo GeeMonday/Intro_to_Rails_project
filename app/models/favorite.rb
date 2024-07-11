@@ -1,4 +1,4 @@
-class Favorite < ApplicationRecord
+class Favorite < Applications
   belongs_to :user
   belongs_to :dog
 

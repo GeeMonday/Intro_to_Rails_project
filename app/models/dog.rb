@@ -1,6 +1,8 @@
 class Dog < ApplicationRecord
   validates :name, presence: true, length: { minimum: 2, maximum: 50 }
   validates :age, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  # Ensure the photo_url attribute is accessible
+  validates :photo_url, presence: true
   
   belongs_to :shelter
   has_many :favorites

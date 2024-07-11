@@ -1,6 +1,8 @@
 class Shelter < ApplicationRecord
-  validates :name, presence: true, uniqueness: true, length: { minimum: 2, maximum: 100 }
-  validates :location, presence: true
-  
   has_many :dogs
+
+  validates :name, presence: true
+  validates :location, presence: true
+  validates :contact_info, presence: true
+  validates :website_url, presence: true
 end
